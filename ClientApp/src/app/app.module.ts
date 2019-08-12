@@ -4,25 +4,24 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-
+import {
+  NgbModule,
+  NgbAlertModule,
+  NgbDatepickerModule
+} from "@ng-bootstrap/ng-bootstrap";
+//components
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HelpComponent } from "./help/help.component";
 import { RegisterComponent } from "./register/register.component";
 import { BsDatepickerModule } from "ngx-bootstrap";
 import { MyDateTimePickerComponent } from "./shared/myDateTimePicker/myDateTimePicker.component";
-import { CustomValidatorService } from "./services/custom-validator.service";
-
-import {
-  NgbModule,
-  NgbAlert,
-  NgbAlertModule,
-  NgbDatepickerModule
-} from "@ng-bootstrap/ng-bootstrap";
 import { ErrorTemplateComponent } from "./shared/errorTemplate/errorTemplate.component";
+import { FetchDataComponent } from "./fetch-data/fetch-data.component";
+// services
+import { CustomValidatorService } from "./services/custom-validator.service";
 import { AppConfig } from "./services/app.config.service";
 import { DataService } from "./services/data.service";
-import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 
 export function get_settings(appConfig: AppConfig) {
   return () => appConfig.loadErrorMessages();
@@ -45,7 +44,7 @@ export function get_settings(appConfig: AppConfig) {
     ReactiveFormsModule,
     FontAwesomeModule,
     BsDatepickerModule.forRoot(),
-
+    NgbAlertModule,
     NgbDatepickerModule,
     RouterModule.forRoot([
       { path: "", component: RegisterComponent, pathMatch: "full" },

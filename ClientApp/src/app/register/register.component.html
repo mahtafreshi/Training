@@ -1,7 +1,7 @@
 <h5>Register</h5>
 <ng-template [ngIf]="getWarningToshow">
   <div
-    ngClass="{'alert-success':succeded, 'alert-success':failed}"
+    [ngClass]="succeded ? 'alert-success' : 'alert-success'"
     class="alert alert-dismissible"
     role="alert"
   >
@@ -9,7 +9,7 @@
       <span aria-hidden="true">&times;</span>
     </button>
     <div *ngIf="succeded">
-      <strong>Succeeded! </strong>{{ difference }} Day Difference
+      <strong>Succeeded! </strong>{{difference}} Day Difference
     </div>
     <div *ngIf="failed"><strong>Failed! </strong>Failed to save</div>
   </div>

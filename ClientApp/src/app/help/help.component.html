@@ -40,3 +40,26 @@
   <code>ng</code> command (e.g., <code>ng test</code>), or use
   <code>npm</code> to install extra packages into it.
 </p>
+<ul>
+  <li>
+    <strong>Create the database</strong>
+  </li>
+  <p class="x-hidden-focus">
+    Once you have a model, you use
+    <a
+      class="xref"
+      href="https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/index"
+      data-linktype="relative-path"
+      >migrations</a
+    >
+    to create a database.
+  </p>
+  <li>
+    Run <code>dotnet ef migrations add InitialCreate</code> to scaffold a
+    migration and create the initial set of tables for the model.
+  </li>
+  <li class="">
+    Run <code>dotnet ef database update</code> to apply the new migration to the
+    database. This command creates the database before applying migrations.
+  </li>
+</ul>

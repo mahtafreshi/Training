@@ -122,9 +122,15 @@ export class RegisterComponent implements OnInit {
           this.difference = resp;
           this.succeded = true;
           this.formGrp.reset();
+          setTimeout(() => {
+            this.succeded = false;
+          }, 2000);
         })
         .catch(error => {
           this.failed = true;
+          setTimeout(() => {
+            this.failed = false;
+          }, 2000);
         });
     }
   }

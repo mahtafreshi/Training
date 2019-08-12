@@ -1,19 +1,20 @@
 ﻿import { Injectable, Inject } from "@angular/core";
-import { FormControl } from "@angular/forms";
 import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse
 } from "@angular/common/http";
-import { map, catchError } from "rxjs/operators";
-import { ITrainingInfo, TrainingInfoModel } from "../models/training.model";
-import { Observable, throwError } from "rxjs";
+
+import { TrainingInfoModel } from "../models/training.model";
+import { throwError } from "rxjs";
+
 @Injectable()
 export class DataService {
-  private baseUrl: string;
+  readonly baseUrl: string;
   constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) {
     this.baseUrl = baseUrl;
   }
+  // Add a new training course
   public async addTraining(traningInfo: TrainingInfoModel): Promise<any> {
     const methodName = "Training";
     let tz = traningInfo.fromDate.getTimezoneOffset();
@@ -25,6 +26,7 @@ export class DataService {
     const methodName = "Training";
     return await this.get<TrainingInfoModel>(methodName);
   }
+  // get request
   public async get<T>(methodName: string) {
     return this.http
       .get<T[]>(`${this.baseUrl}api/v1.0/${methodName}`)
@@ -32,6 +34,7 @@ export class DataService {
       .then(response => response as T[])
       .catch(this.handleError);
   }
+  // post request
   public async post<T>(methodName: string, params: T): Promise<any> {
     const headers = new HttpHeaders().set("content-type", "application/json");
     var body = JSON.stringify(params);
