@@ -1,0 +1,137 @@
+<h5>Register</h5>
+<ng-template [ngIf]="getWarningToshow">
+  <div
+    ngClass="{'alert-success':succeded, 'alert-success':failed}"
+    class="alert alert-dismissible"
+    role="alert"
+  >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div *ngIf="succeded">
+      <strong>Succeeded! </strong>{{ difference }} Day Difference
+    </div>
+    <div *ngIf="failed"><strong>Failed! </strong>Failed to save</div>
+  </div>
+</ng-template>
+<form class="form-horizontal" [formGroup]="formGrp" (ngSubmit)="submit()">
+  <div class="form-group col-xs-12 col-12 col-md-12 col-lg-6">
+    <div class="input-group">
+      <label for="inputTrainingName" class="col-sm-12 control-label"
+        >Traning Name</label
+      >
+      <div class="col-sm-12">
+        <input
+          type="text"
+          class="form-control"
+          id="inputTrainingName"
+          formControlName="trainingName"
+          placeholder="Training Name"
+        />
+        <ng-template [ngIf]="trainingName.dirty || trainingName.touched">
+          <app-errorTemplate
+            [show]="!trainingName.value"
+            [message]="RequiredMessage"
+          ></app-errorTemplate>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="form-group col-xs-12 col-12 col-md-12 col-lg-6">
+    <div class="input-group">
+      <label for="inputFromDate" class="col-sm-12 control-label"
+        >From Date</label
+      >
+      <div class="col-sm-12">
+        <div class="input-group">
+          <input
+            class="form-control"
+            placeholder="YYYY-MM-DD"
+            name="dp"
+            ngbDatepicker
+            #fromd="ngbDatepicker"
+            formControlName="fromDate"
+            (click)="fromd.toggle()"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              (click)="fromd.toggle()"
+              type="button"
+            >
+              <fa-icon [icon]="faCalendar" class="fa-xm"></fa-icon>
+            </button>
+          </div>
+        </div>
+        <app-errorTemplate
+          [show]="formGrp.errors && formGrp.errors?.dates"
+          [message]="formGrp.errors?.dates"
+        ></app-errorTemplate>
+
+        <ng-template
+          [ngIf]="fromDate.invalid && (fromDate.dirty || fromDate.touched)"
+        >
+          <app-errorTemplate
+            [show]="fromDate.errors.required"
+            [message]="RequiredMessage"
+          ></app-errorTemplate>
+          <app-errorTemplate
+            [show]="!fromDate.errors.validateDate && !fromDate.errors.required"
+            [message]="DateFormatMessage"
+          >
+          </app-errorTemplate>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="form-group col-xs-12 col-12 col-md-12 col-lg-6">
+    <div class="input-group">
+      <label for="inputFromDate" class="col-sm-12 control-label">To Date</label>
+      <div class="col-sm-12">
+        <div class="input-group">
+          <input
+            class="form-control"
+            placeholder="YYYY-MM-DD"
+            name="dp"
+            ngbDatepicker
+            #tod="ngbDatepicker"
+            formControlName="toDate"
+            (click)="tod.toggle()"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              (click)="tod.toggle()"
+              type="button"
+            >
+              <fa-icon [icon]="faCalendar" class="fa-xm"></fa-icon>
+            </button>
+          </div>
+        </div>
+        <ng-template
+          [ngIf]="toDate.invalid && (toDate.dirty || toDate.touched)"
+        >
+          <app-errorTemplate
+            [show]="toDate.errors.required"
+            [message]="RequiredMessage"
+          ></app-errorTemplate>
+          <app-errorTemplate
+            [show]="!toDate.errors.validateDate && !toDate.errors.required"
+            [message]="DateFormatMessage"
+          >
+          </app-errorTemplate>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div
+    class="col-md-12"
+    *ngIf="formGrp.valid && (formGrp.dirty || formGrp.touched)"
+  >
+    <div class="d-flex flex-row-reverse col-md-6 pr-4">
+      <button id="btnsubmit" type="submit" class="btn btn-primary">
+        Submit
+      </button>
+    </div>
+  </div>
+</form>

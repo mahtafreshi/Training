@@ -1,0 +1,8 @@
+{
+  "errorMessages": {
+    "filedIsRequired": "This field is required",
+    "dateFormatIsWrong": "the entered date is not valid.Valid format is YYYY-MM-DD format.",
+    "minLenthMustBe5Char": "Please Enter at least 5 character.",
+    "fromDateIsGreaterThanToDate": "'From Date' value must be before 'To Date' value. "
+  }
+}

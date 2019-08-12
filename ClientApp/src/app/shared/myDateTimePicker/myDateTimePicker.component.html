@@ -1,0 +1,29 @@
+<form class="form-horizontal" [formGroup]="dtpformgroup" novalidate>
+  <label for="inputFromDate" class="col-sm-12 control-label">{{
+    dtPickerLabel
+  }}</label>
+  is valid?{{ this.dtpformgroup.controls["dtpValue"].invalid }}
+  <div class="col-sm-12">
+    <div class="input-group">
+      <input
+        type="text"
+        id="inputFromDate"
+        class="form-control"
+        bsDatepicker
+        #dp="bsDatepicker"
+        [bsConfig]="bsConfig"
+        placeholder="DD/MM/YYYY"
+        bsValue="dtpformgroup.get('dtpValue')"
+        value="{{ dtpformgroup.get('dtpValue').value | date: 'yyyy-MM-dd' }}"
+        (onHidden)="onHidden('dtpValue')"
+        (bsValueChange)="onValChange($event)"
+      />
+
+      <div class="input-group-btn">
+        <button (click)="dp.show()" [attr.aria-expanded]="dp.isOpen">
+          <fa-icon [icon]="faCalendar" class="fa-lg"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

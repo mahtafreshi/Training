@@ -1,0 +1,41 @@
+{
+  "DEV": {
+    "env": {
+      "name": "DEV"
+    },
+    "logging": {
+      "console": true,
+      "appInsights": true
+    },
+    "apiServer": {
+      "metadata": "https://localhost:4200/api/v1.0/",
+      "rule": "https://localhost:5000/api/v1.0/"
+    }
+  },
+  "UAT": {
+    "env": {
+      "name": "#{envName}"
+    },
+    "logging": {
+      "console": true,
+      "appInsights": true
+    },
+    "apiServer": {
+      "metadata": "https://#{apiServerPrefix}.test.com/api/v1.0/",
+      "rule": "https://#{apiServerPrefix}.test.com/api/v1.0/"
+    }
+  },
+  "PROD": {
+    "env": {
+      "name": "#{envName}"
+    },
+    "logging": {
+      "console": true,
+      "appInsights": true
+    },
+    "apiServer": {
+      "metadata": "https://#{apiServerPrefix}.test.com/api/v1.0/",
+      "rule": "https://#{apiServerPrefix}.test.com/api/v1.0/"
+    }
+  }
+}
